@@ -34,6 +34,8 @@ def add_parameter_ui(clf_name):
     if clf_name == "KNN":
         K = st.sidebar.slider("K", 1, 15) 
         params["K"] = K
+    elif clf_name == "SVN":
+        C = st.sidebar.slider("C", 0.01, 10.0)    
     return params 
 
 add_parameter_ui(classifier_name)
