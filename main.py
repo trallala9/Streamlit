@@ -7,8 +7,10 @@ from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.decomposition import PCA
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 st.title("hello")
 
@@ -77,6 +79,23 @@ acc = accuracy_score(y_test, y_pred)
 st.write(f"classifier = {classifier_name}")
 st.write(f"accuracy = {acc}")  
 
+#plot
+pca = PCA(2)
+X_projected =  pca.fit_transform(X)
+
+x1 = X_projected[:, 0]
+x2 = X_projected[:, 1]
+
+fig = plt.figure()
+plt.scatter(x1, x2, c=y, alpha=0.9, cmap="viridis")
+plt.xlabel("Principal component 1")
+plt.ylabel("Principal component 2")
+plt.colorbar()
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+#plt show
+st.pyplot()
 
 
 
