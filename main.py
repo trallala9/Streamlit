@@ -11,17 +11,21 @@ from sklearn.decomposition import PCA
 
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-st.title("hello")
+st.title("Explore different datasets and classifiers")
 
 st.write("""
-Explore a classfier!
+Here is Your chosen dataset :
 """)
 
-dataset_name = st.sidebar.selectbox("Select dataset",("Iris", "House prices", "Wine dataset"))
+
+dataset_name = st.sidebar.selectbox("Select from datasets",("Iris", "House prices", "Wine dataset"))
 st.write(dataset_name)
 
-classifier_name =  st.sidebar.selectbox("Select classifier",("KNN", "SVM", "Random Forest"))
+
+
+classifier_name =  st.sidebar.selectbox("Select from classifiers",("KNN", "SVM", "Random Forest"))
 
 def get_dataset(dataset_name):
     if dataset_name == "Iris":
@@ -35,8 +39,9 @@ def get_dataset(dataset_name):
     return X, y   
 
 X, y = get_dataset(dataset_name)
-st.write("Shape of dataset",X.shape)
+st.write("Shape of chosen dataset",X.shape)
 st.write("Number of classes", len(np.unique(y)))
+
 
 def add_parameter_ui(clf_name):
     params = dict()
@@ -76,8 +81,8 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 
 acc = accuracy_score(y_test, y_pred)
-st.write(f"classifier = {classifier_name}")
-st.write(f"accuracy = {acc}")  
+st.write(f"Your chosen classifier : = {classifier_name}")
+st.write(f"Classifier accuracy = {acc}")  
 
 #plot
 pca = PCA(2)
